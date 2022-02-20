@@ -7,6 +7,7 @@ import 'package:portfolio/widgets/footer.dart';
 import 'package:portfolio/widgets/inkwell.dart';
 import 'package:portfolio/widgets/project_tile.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -41,7 +42,7 @@ class _HomeState extends State<Home> {
             height: MediaQuery.of(context).size.height * 0.4,
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.6,
+            height: MediaQuery.of(context).size.height * 0.2,
             child: Center(
                 child: Column(
               children: [
@@ -64,39 +65,66 @@ class _HomeState extends State<Home> {
                       color: kpurple,
                       fontWeight: FontWeight.bold),
                 ),
-                Text(
-                  "Unicorn Developer.",
-                  style: TextStyle(
-                      fontSize: 24,
-                      color: kpurple,
-                      fontWeight: FontWeight.bold),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 30),
-                  child: InkWell(
-                    onTap: () {
-                      controller.animateTo(MediaQuery.of(context).size.height,
-                          duration: Duration(seconds: 1, milliseconds: 500),
-                          curve: Curves.ease);
-                    },
-                    hoverColor: kpurple,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 5),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: kgreen, width: 2)),
-                      child: Text(
-                        "Know more",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: kgreen,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
+                AnimatedTextKit(
+                  repeatForever: true,
+                  animatedTexts: [
+                    RotateAnimatedText('Unknown Developer',
+                        duration: Duration(milliseconds: 2000),
+                        transitionHeight: 28,
+                        rotateOut: true,
+                        textStyle: TextStyle(
+                            fontSize: 24,
+                            color: kpurple,
+                            fontWeight: FontWeight.bold)),
+                    RotateAnimatedText('Missing Developer',
+                        duration: Duration(milliseconds: 2000),
+                        transitionHeight: 28,
+                        rotateOut: true,
+                        textStyle: TextStyle(
+                            fontSize: 24,
+                            color: kpurple,
+                            fontWeight: FontWeight.bold)),
+                    RotateAnimatedText('Unicorn Developer',
+                        transitionHeight: 28,
+                        rotateOut: true,
+                        duration: Duration(milliseconds: 2000),
+                        textStyle: TextStyle(
+                            fontSize: 24,
+                            color: kpurple,
+                            fontWeight: FontWeight.bold)),
+                  ],
                 ),
               ],
             )),
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height * 0.1,
+            child: Center(
+              child: InkWell(
+                onTap: () {
+                  controller.animateTo(MediaQuery.of(context).size.height,
+                      duration: Duration(seconds: 1, milliseconds: 500),
+                      curve: Curves.ease);
+                },
+                hoverColor: kpurple,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kgreen, width: 2)),
+                  child: Text(
+                    "Know more",
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: kgreen,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.3,
           ),
           Container(
             height: MediaQuery.of(context).size.height,
